@@ -1,3 +1,5 @@
+import { NetworkEvent } from "./types";
+
 class Artemis{
     constructor(){
         this.trackJSErrors();
@@ -18,13 +20,17 @@ class Artemis{
         (function(){
             const originalFetch=window.fetch;
             window.fetch=function(...args){
+                const startTime=performance.now();
                 const responsePromise=originalFetch.apply(this,args);
                 responsePromise.then((response)=>{
-                    const event={
+                    const endTime=performance.now();
+                    const networkResponseTime=endTime-startTime;
+                    const event :NetworkEvent={
                         requestURL:args[0],
                         requestMethod:args[1]?.method || 'GET',
                         status:response.status,
-                        statusText:response.statusText
+                        statusText:response.statusText,
+                        networkResponseTime
                     };
 
                 this.handleNetworkEvents(event);
@@ -34,7 +40,7 @@ class Artemis{
         })();
     }
 
-    handleNetworkEvents(event){
+    handleNetworkEvents(event:NetworkEvent){
         console.log("Network event occured",event);
     }
 
