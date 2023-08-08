@@ -8,7 +8,6 @@ const name = packageJson.main.replace(/\.js$/, '');
 const bundle = config => ({
   ...config,
   input: 'src/artemis.ts',
-  external: id => !/^[./]/.test(id),
 })
 
 export default [

@@ -1,6 +1,6 @@
 {
   "name": "@omkar-nath/artemis-agent",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "type": "module",
   "publishConfig": {
@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build":"rollup -c"
+    "build": "rollup -c",
+    "deploy": "npm publish"
   },
   "author": "Omkar Nath Mandal",
   "license": "MIT",
