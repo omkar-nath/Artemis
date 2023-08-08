@@ -1,5 +1,6 @@
-import { ArtemisOptions, NetworkEvent } from "./types";
-import { trackNativeFetch} from "./network/nativeFetchAPI";
+import { ArtemisOptions } from "./types";
+import { trackNativeFetch } from "./network/nativeFetchAPI";
+import getUserDetails from "./user/userDetails";
 
 class Artemis {
   private applicationName: string;
@@ -7,6 +8,7 @@ class Artemis {
     autoErrorTrackingEnabled = true,
     autoUserEventTrackingEnabled = true,
     autoNetworkEventTrackingEnabled = true,
+    captureUserDetails = true,
     applicationName,
   }: ArtemisOptions) {
     this.applicationName = applicationName;
@@ -17,18 +19,25 @@ class Artemis {
       this.trackNetworkEvent();
     }
     if (autoUserEventTrackingEnabled) {
-        this.trackUserInteractions();
+      this.trackUserInteractions();
     }
+    if (captureUserDetails) {
+      this.trackUserDetails();
+    }
+
+    console.log('Artemis agent initialized successfully',"😻" );
   }
 
-  trackUserInteractions() {
-    
+  trackUserInteractions() {}
+
+  trackUserDetails() {
+    getUserDetails();
   }
 
   trackJSErrors() {}
 
   trackNetworkEvent() {
-    trackNativeFetch();
+    trackNativeFetch(this.applicationName);
   }
 
   collectPerformanceMetrics() {}

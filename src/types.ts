@@ -4,6 +4,7 @@ export type NetworkEvent = {
   status: string;
   statusText: string;
   networkResponseTime: number;
+  timestamp:number;
 };
 
 export type ArtemisOptions = {
@@ -11,4 +12,6 @@ export type ArtemisOptions = {
   autoErrorTrackingEnabled?: boolean;
   autoNetworkEventTrackingEnabled?: boolean;
   autoUserEventTrackingEnabled?: boolean;
+  captureUserDetails?:boolean
+
 };
