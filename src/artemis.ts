@@ -1,52 +1,37 @@
-import { NetworkEvent } from "./types";
+import { ArtemisOptions, NetworkEvent } from "./types";
+import { trackNativeFetch} from "./network/nativeFetchAPI";
 
-class Artemis{
-    constructor(){
-        this.trackJSErrors();
+class Artemis {
+  private applicationName: string;
+  constructor({
+    autoErrorTrackingEnabled = true,
+    autoUserEventTrackingEnabled = true,
+    autoNetworkEventTrackingEnabled = true,
+    applicationName,
+  }: ArtemisOptions) {
+    this.applicationName = applicationName;
+    if (autoErrorTrackingEnabled) {
+      this.trackJSErrors();
+    }
+    if (autoNetworkEventTrackingEnabled) {
+      this.trackNetworkEvent();
+    }
+    if (autoUserEventTrackingEnabled) {
         this.trackUserInteractions();
-        this.collectPerformanceMetrics();
-        this.trackNetworkEvent();
     }
+  }
 
-    trackUserInteractions(){
+  trackUserInteractions() {
+    
+  }
 
-    }
+  trackJSErrors() {}
 
-    trackJSErrors(){
+  trackNetworkEvent() {
+    trackNativeFetch();
+  }
 
-    }
-
-    trackNetworkEvent(){
-        (function(){
-            const originalFetch=window.fetch;
-            window.fetch=function(...args){
-                const startTime=performance.now();
-                const responsePromise=originalFetch.apply(this,args);
-                responsePromise.then((response)=>{
-                    const endTime=performance.now();
-                    const networkResponseTime=endTime-startTime;
-                    const event :NetworkEvent={
-                        requestURL:args[0],
-                        requestMethod:args[1]?.method || 'GET',
-                        status:response.status,
-                        statusText:response.statusText,
-                        networkResponseTime
-                    };
-
-                this.handleNetworkEvents(event);
-                });
-                return responsePromise;
-            };
-        })();
-    }
-
-    handleNetworkEvents(event:NetworkEvent){
-        console.log("Network event occured",event);
-    }
-
-    collectPerformanceMetrics(){
-
-    }
+  collectPerformanceMetrics() {}
 }
 
 export default Artemis;
