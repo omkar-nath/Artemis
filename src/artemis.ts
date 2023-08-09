@@ -4,6 +4,8 @@ import getUserDetails from "./user/userDetails";
 
 export default class Artemis {
   private applicationName: string;
+  _artemisWindow:Window;
+  _document:Document;
   constructor({
     autoErrorTrackingEnabled = true,
     autoUserEventTrackingEnabled = true,
@@ -12,6 +14,8 @@ export default class Artemis {
     applicationName,
   }: ArtemisOptions) {
     this.applicationName = applicationName;
+    this._artemisWindow=window|| {};
+    this._document=document || window.document ||{};
     if (autoErrorTrackingEnabled) {
       this.trackJSErrors();
     }
@@ -24,7 +28,7 @@ export default class Artemis {
     if (captureUserDetails) {
       this.trackUserDetails();
     }
-
+   
     console.log('Artemis agent initialized successfully',"😻" );
   }
 
@@ -37,7 +41,7 @@ export default class Artemis {
   trackJSErrors() {}
 
   trackNetworkEvent() {
-    trackNativeFetch(this.applicationName);
+    trackNativeFetch(this.applicationName,this._artemisWindow);
   }
 
   collectPerformanceMetrics() {}
