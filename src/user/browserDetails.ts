@@ -1,4 +1,4 @@
-export default function getBrowser(userAgent) {
+export default function getBrowser(userAgent:string) {
   if (/MSIE|Trident/i.test(userAgent)) {
     return "Internet Explorer";
   } else if (/Edge/i.test(userAgent)) {

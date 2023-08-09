@@ -1,3 +1,3 @@
-export function handleUserEvents(event,applicationName){
+export function handleUserEvents(event:any,applicationName:any){
     console.log('User event occurred',event);
 }

@@ -1,7 +1,7 @@
 export type NetworkEvent = {
   requestURL: URL | RequestInfo;
   requestMethod: string;
-  status: string;
+  status: number;
   statusText: string;
   networkResponseTime: number;
   timestamp:number;

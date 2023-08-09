@@ -1,4 +1,4 @@
-export default function getOperatingSystem(userAgent) {
+export default function getOperatingSystem(userAgent:string) {
   if (/Windows NT 10.0/i.test(userAgent)) {
     return "Windows 10";
   } else if (/Windows NT 6.3/i.test(userAgent)) {

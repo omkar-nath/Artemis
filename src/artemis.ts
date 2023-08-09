@@ -2,7 +2,7 @@ import { ArtemisOptions } from "./types";
 import { trackNativeFetch } from "./network/nativeFetchAPI";
 import getUserDetails from "./user/userDetails";
 
-class Artemis {
+export default class Artemis {
   private applicationName: string;
   constructor({
     autoErrorTrackingEnabled = true,
@@ -43,4 +43,3 @@ class Artemis {
   collectPerformanceMetrics() {}
 }
 
-export default Artemis;
