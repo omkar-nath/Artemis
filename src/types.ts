@@ -15,3 +15,9 @@ export type ArtemisOptions = {
   captureUserDetails?:boolean
 
 };
+
+declare global {
+  interface Window {
+      ArtemisAgent:any;
+  }
+}

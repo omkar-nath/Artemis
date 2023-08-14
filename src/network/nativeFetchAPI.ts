@@ -1,7 +1,7 @@
-import { handleNetworkEvents } from "../service/networkEvents";
+import sendNetworkEvents from "../service/networkEvents";
 import { NetworkEvent } from "../types";
 
-export function trackNativeFetch(applicationName:string,window:Window) {
+export function trackNativeFetch(window:Window) {
   if(!window)
   return;
   const originalFetch = window && window.fetch;
@@ -19,7 +19,7 @@ export function trackNativeFetch(applicationName:string,window:Window) {
         networkResponseTime,
         timestamp:new Date().getTime()
       };
-      handleNetworkEvents(event,applicationName);
+      sendNetworkEvents(event);
       
     });
     return responsePromise;
