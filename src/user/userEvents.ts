@@ -6,12 +6,12 @@ export function handleUserEvents(window: Window) {
       const htmlElement = event.target as HTMLElement;
       const eventDetails = {
         eventType: event.type,
+        timestamp: new Date().getTime(),
         targetElement: {
           tagName: htmlElement.tagName,
           className: htmlElement.className || null,
           id: htmlElement.id || null,
           ariaLabel: htmlElement.ariaLabel || "N/A",
-          timestamp: new Date().getTime(),
           fullElement:htmlElement
         },
       };

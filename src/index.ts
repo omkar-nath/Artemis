@@ -3,7 +3,7 @@ export { default } from "./artemis";
 
 window.ArtemisAgent = {
   install: function (applicationName: string) {
-    console.log("Trying to initialize artemis agent here in code!");
+    console.log("Trying to initialize artemis agent","🐆 🐆");
     if (!applicationName) {
       console.warn(
         "A valid application name is required in orde to use artemis agent!","🌵"

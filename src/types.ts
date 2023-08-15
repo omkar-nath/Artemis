@@ -16,6 +16,14 @@ export type ArtemisOptions = {
 
 };
 
+export enum ArtemisEventTypes{
+  API_CALL="artemis_API_Call",
+  USER_EVENT="artemis_User_Event",
+  ERROR="artemis_Error_Event",
+  USER_DETAILS="artemis-User-details"
+
+}
+
 declare global {
   interface Window {
       ArtemisAgent:any;
