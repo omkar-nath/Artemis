@@ -3,6 +3,7 @@ export type NetworkEvent = {
   requestMethod: string;
   status: number;
   statusText: string;
+  errorMessage?:string;
   networkResponseTime: number;
   timestamp:number;
 };
